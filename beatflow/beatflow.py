@@ -95,31 +95,67 @@ class BeatFlow:
         else:
             print("No existe una lista de reproducción con ese nombre.")
     
+#class Reproductor:
+    #def __init__(self):
+       # self.instance = vlc.Instance()
+        #self.player = self.instance.media_player_new()
+        #self.playlist = []
+        #self.current_index = 0
+    
+    #def agregar_cancion_cola(self, cancion):
+        #self.playlist.append(cancion)
+    
+    #def reproducir_cancion(self, index):
+        #if index < len(self.playlist):
+            #media = self.instance.media_new(self.playlist[index])
+            #self.player.set_media(media)
+            #self.player.play()
+            #self.current_index = index
+            #time.sleep(1)
+
+    #def reproducir_siguiente(self):
+        #if self.current_index + 1 < len(self.playlist):
+            #self.reproducir_cancion(self.current_index + 1)
+
+    #def reproducir_anterior(self):
+        #if self.current_index - 1 >= 0:
+            #self.reproducir_cancion(self.current_index - 1)
+
+    #def pausar_musica(self):
+        #self.player.stop()
+
+    #def set_volume(self, volume):
+        #if 0 <= volume <= 100:
+            #self.player.audio_set_volume(volume)
+    
+    #def get_volume(self):
+        #return self.player.audio_get_volume()
+    
+    #def add_to_queue(self, song):
+        #self.agregar_cancion_cola(song)
+
+    #def play_queue(self):
+        #while self.current_index < len(self.playlist):
+            #self.reproducir_cancion(self.current_index)
+            #while self.player.is_playing():
+                #time.sleep(1)
+            #self.current_index += 1
 class Reproductor:
     def __init__(self):
         self.instance = vlc.Instance()
         self.player = self.instance.media_player_new()
         self.playlist = []
         self.current_index = 0
-    
+
     def agregar_cancion_cola(self, cancion):
         self.playlist.append(cancion)
-    
+
     def reproducir_cancion(self, index):
         if index < len(self.playlist):
             media = self.instance.media_new(self.playlist[index])
             self.player.set_media(media)
             self.player.play()
             self.current_index = index
-            time.sleep(1)
-
-    def reproducir_siguiente(self):
-        if self.current_index + 1 < len(self.playlist):
-            self.reproducir_cancion(self.current_index + 1)
-
-    def reproducir_anterior(self):
-        if self.current_index - 1 >= 0:
-            self.reproducir_cancion(self.current_index - 1)
 
     def pausar_musica(self):
         self.player.stop()
@@ -127,34 +163,7 @@ class Reproductor:
     def set_volume(self, volume):
         if 0 <= volume <= 100:
             self.player.audio_set_volume(volume)
-    
+
     def get_volume(self):
-        return self.player.audio_get_volume()
-    
-    def add_to_queue(self, song):
-        self.agregar_cancion_cola(song)
+        return self.player.audio_get_volume()            
 
-    def play_queue(self):
-        while self.current_index < len(self.playlist):
-            self.reproducir_cancion(self.current_index)
-            while self.player.is_playing():
-                time.sleep(1)
-            self.current_index += 1
-
-# Ejemplo de uso del reproductor de música
-player = Reproductor()
-#player.agregar_cancion_cola('El Hombre De Mamá - Diomedes Díaz.mp3')
-
-
-# Reproducir la lista de canciones
-player.play_queue()
-
-# Subir y bajar volumen
-current_volume = player.get_volume()
-print(f'Volume before: {current_volume}')
-player.set_volume(current_volume + 10)
-print(f'Volume after: {player.get_volume()}')
-
-# Agregar una canción a la cola y reproducir
-player.add_to_queue('Doblaron Las Campanas - Diomedes Díaz.mp3')
-player.play_queue()
