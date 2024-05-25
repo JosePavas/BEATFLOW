@@ -1,14 +1,12 @@
 import vlc
 import tkinter
 import os
-from beatflow.beatflow import *
+from BEATFLOW.model.beatflow import *
 import threading
 import tkinter as tk
 from tkinter import filedialog
 import threading
-import vlc
 import time
-import os
 
 class MusicPlayer:
     def __init__(self, root):
